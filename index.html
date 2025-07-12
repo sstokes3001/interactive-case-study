@@ -111,16 +111,30 @@
             margin-top: 30px;
         }
 
+        /* Accordion Styling using CSS Grid */
         .section-content,
         .round-content {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.5s ease-in-out;
+            display: grid;
+            grid-template-rows: 0fr;
+            /* Collapsed by default */
+            transition: grid-template-rows 0.4s ease-in-out;
         }
 
-        .section-content {
+        .section-content.active,
+        .round-content.active {
+            grid-template-rows: 1fr;
+            /* Expanded */
+        }
+
+        .section-content>div,
+        .round-content>div {
+            overflow: hidden;
+        }
+
+        .section-content>div {
             padding-top: 10px;
         }
+
 
         .dialogue-block {
             padding: 20px;
@@ -262,117 +276,128 @@
         <section class="case-study-section">
             <h2 id="part1-toggle">Part 1: Iterative Prompting Dialogue</h2>
             <div class="section-content">
-                <div id="iterative-dialogue">
-                    <div class="round">
-                        <h4 id="round-1-toggle">Round 1: A Basic Fact-Checking Prompt</h4>
-                        <div class="round-content">
-                            <div class="dialogue-block prompt-block">
-                                <h5>Input Prompt</h5>
-                                <blockquote>
-                                    <p>Are there any arguments in the Federalist Papers that are relevant to
-                                        contemporary debates about the filibuster?</p>
-                                </blockquote>
-                            </div>
-                            <div class="dialogue-block ai-block">
-                                <h5>AI Response</h5>
-                                <blockquote>
-                                    <p>Yes, the Federalist Papers contain arguments relevant to contemporary debates
-                                        about the
-                                        filibuster, particularly in Federalist No. 22 and Federalist No. 58.</p>
-                                </blockquote>
-                            </div>
-                            <div class="dialogue-block analysis-block">
-                                <h5>Expert Analysis</h5>
-                                <p>This is a good, fact-based start. The AI correctly identifies Federalist No. 22 as a
-                                    relevant
-                                    text. The reference to No. 58 is also plausible, as it discusses the power of the
-                                    House of
-                                    Representatives, though it's less directly about supermajorities.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="round">
-                        <h4 id="round-2-toggle">Round 2: Scaffolding with a Persona</h4>
-                        <div class="round-content">
-                            <div class="dialogue-block prompt-block">
-                                <h5>Input Prompt</h5>
-                                <blockquote>
-                                    <p>Assume the persona of a political science professor. I am your student. I want
-                                        you to
-                                        help me understand the relevance of the Federalist Papers to the filibuster
-                                        debate.</p>
-                                </blockquote>
-                            </div>
-                            <div class="dialogue-block ai-block">
-                                <h5>AI Response</h5>
-                                <blockquote>
-                                    <p>Excellent question. While the Federalist Papers don't use the term "filibuster,"
-                                        they
-                                        absolutely engage with the core principles at stake. Think of it less as a
-                                        direct
-                                        mention and more as a philosophical foundation. Where do you think we might see
-                                        discussions about the power of a minority to block a majority?</p>
-                                </blockquote>
-                            </div>
-                            <div class="dialogue-block analysis-block">
-                                <h5>Expert Analysis</h5>
-                                <p>This is a significant improvement. By assigning a persona ("political science
-                                    professor"),
-                                    the user prompts the AI to adopt a more pedagogical stance, asking questions rather
-                                    than
-                                    just providing answers.</p>
+                <div>
+                    <div id="iterative-dialogue">
+                        <div class="round">
+                            <h4 id="round-1-toggle">Round 1: A Basic Fact-Checking Prompt</h4>
+                            <div class="round-content">
+                                <div>
+                                    <div class="dialogue-block prompt-block">
+                                        <h5>Input Prompt</h5>
+                                        <blockquote>
+                                            <p>Are there any arguments in the Federalist Papers that are relevant to
+                                                contemporary debates about the filibuster?</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="dialogue-block ai-block">
+                                        <h5>AI Response</h5>
+                                        <blockquote>
+                                            <p>Yes, the Federalist Papers contain arguments relevant to contemporary
+                                                debates about the
+                                                filibuster, particularly in Federalist No. 22 and Federalist No. 58.</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="dialogue-block analysis-block">
+                                        <h5>Expert Analysis</h5>
+                                        <p>This is a good, fact-based start. The AI correctly identifies Federalist No.
+                                            22 as a relevant
+                                            text. The reference to No. 58 is also plausible, as it discusses the power
+                                            of the House of
+                                            Representatives, though it's less directly about supermajorities.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="round">
-                        <h4 id="round-3-toggle">Round 3: Applying the SMART Framework</h4>
-                        <div class="round-content">
-                            <div class="dialogue-block prompt-block">
-                                <h5>Input Prompt</h5>
-                                <blockquote>
-                                    <p>You are a helpful, expert tutor in political science. Your goal is to help a
-                                        student
-                                        learn about the Federalist Papers. Customize your interaction to the student's
-                                        learning
-                                        level. Guide the student with questions and break topics into smaller chunks.
-                                    </p>
-                                    <p>Follow these steps:</p>
-                                    <ol>
-                                        <li>Introduce yourself and ask what the student already knows about the topic.
-                                        </li>
-                                        <li>Based on their response, ask leading questions to help them connect the
-                                            Federalist
-                                            Papers to the filibuster debate. Provide analogies and examples.</li>
-                                        <li>Do NOT give the answer away directly. Focus on guiding the student toward
-                                            their own
-                                            conclusions.</li>
-                                    </ol>
-                                    <p>Begin now.</p>
-                                </blockquote>
+                        <div class="round">
+                            <h4 id="round-2-toggle">Round 2: Scaffolding with a Persona</h4>
+                            <div class="round-content">
+                                <div>
+                                    <div class="dialogue-block prompt-block">
+                                        <h5>Input Prompt</h5>
+                                        <blockquote>
+                                            <p>Assume the persona of a political science professor. I am your student. I
+                                                want you to
+                                                help me understand the relevance of the Federalist Papers to the
+                                                filibuster debate.</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="dialogue-block ai-block">
+                                        <h5>AI Response</h5>
+                                        <blockquote>
+                                            <p>Excellent question. While the Federalist Papers don't use the term
+                                                "filibuster," they
+                                                absolutely engage with the core principles at stake. Think of it less as
+                                                a direct
+                                                mention and more as a philosophical foundation. Where do you think we
+                                                might see
+                                                discussions about the power of a minority to block a majority?</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="dialogue-block analysis-block">
+                                        <h5>Expert Analysis</h5>
+                                        <p>This is a significant improvement. By assigning a persona ("political science
+                                            professor"),
+                                            the user prompts the AI to adopt a more pedagogical stance, asking questions
+                                            rather than
+                                            just providing answers.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="dialogue-block ai-block">
-                                <h5>AI Response</h5>
-                                <blockquote>
-                                    <p>Hello! I'm here to help you explore the ideas in the Federalist Papers. It's a
-                                        fascinating and important text.</p>
-                                    <p>To get started, could you tell me a little bit about what you already know about
-                                        the
-                                        Federalist Papers or the filibuster debate? No worries if you're brand new to
-                                        the
-                                        topic—that just gives us a great place to start!</p>
-                                </blockquote>
-                            </div>
-                            <div class="dialogue-block analysis-block">
-                                <h5>Expert Analysis</h5>
-                                <p>The <strong>SMART</strong> framework (Specific, Measurable, Action-oriented,
-                                    Relevant,
-                                    Tone-specific) is a powerful tool for prompt engineering. This prompt represents a
-                                    major
-                                    leap in quality by applying this framework, transforming the AI from a simple
-                                    respondent
-                                    into a proactive, process-driven partner.</p>
+                        </div>
+
+                        <div class="round">
+                            <h4 id="round-3-toggle">Round 3: Applying the SMART Framework</h4>
+                            <div class="round-content">
+                                <div>
+                                    <div class="dialogue-block prompt-block">
+                                        <h5>Input Prompt</h5>
+                                        <blockquote>
+                                            <p>You are a helpful, expert tutor in political science. Your goal is to
+                                                help a student
+                                                learn about the Federalist Papers. Customize your interaction to the
+                                                student's learning
+                                                level. Guide the student with questions and break topics into smaller
+                                                chunks.</p>
+                                            <p>Follow these steps:</p>
+                                            <ol>
+                                                <li>Introduce yourself and ask what the student already knows about the
+                                                    topic.</li>
+                                                <li>Based on their response, ask leading questions to help them connect
+                                                    the Federalist
+                                                    Papers to the filibuster debate. Provide analogies and examples.
+                                                </li>
+                                                <li>Do NOT give the answer away directly. Focus on guiding the student
+                                                    toward their own
+                                                    conclusions.</li>
+                                            </ol>
+                                            <p>Begin now.</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="dialogue-block ai-block">
+                                        <h5>AI Response</h5>
+                                        <blockquote>
+                                            <p>Hello! I'm here to help you explore the ideas in the Federalist Papers.
+                                                It's a
+                                                fascinating and important text.</p>
+                                            <p>To get started, could you tell me a little bit about what you already
+                                                know about the
+                                                Federalist Papers or the filibuster debate? No worries if you're brand
+                                                new to the
+                                                topic—that just gives us a great place to start!</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="dialogue-block analysis-block">
+                                        <h5>Expert Analysis</h5>
+                                        <p>The <strong>SMART</strong> framework (Specific, Measurable, Action-oriented,
+                                            Relevant,
+                                            Tone-specific) is a powerful tool for prompt engineering. This prompt
+                                            represents a major
+                                            leap in quality by applying this framework, transforming the AI from a
+                                            simple respondent
+                                            into a proactive, process-driven partner.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -386,115 +411,151 @@
         <section class="case-study-section">
             <h2 id="part2-toggle">Part 2: Comparing AI Model Responses</h2>
             <div class="section-content">
-                <div id="model-comparison">
-                    <p>This section shows how different AI models interpret the same detailed prompt with unique
-                        personalities and strategies.</p>
+                <div>
+                    <div id="model-comparison">
+                        <p>This section shows how different AI models interpret the same detailed prompt with unique
+                            personalities and strategies.</p>
 
-                    <div class="dialogue-block prompt-block">
-                        <h5>Human SMART Prompt</h5>
-                        <blockquote>
-                            <p>You are a helpful, expert tutor in political science. Your goal is to help a student
-                                learn about the Federalist Papers. Customize your interaction to the student's learning
-                                level. Guide the student with questions and break topics into smaller chunks.</p>
-                            <p>Follow these steps:</p>
-                            <ol>
-                                <li>Introduce yourself and ask what the student already knows about the topic.</li>
-                                <li>Based on their response, ask leading questions to help them connect the Federalist
-                                    Papers to the filibuster debate. Provide analogies and examples.</li>
-                                <li>Do NOT give the answer away directly. Focus on guiding the student toward their own
-                                    conclusions.</li>
-                            </ol>
-                            <p>Begin now.</p>
-                        </blockquote>
-                    </div>
-
-                    <div class="comparison-tabs">
-                        <button class="tab-button" data-tab="model-a-p1">Model A (e.g., GPT-3.5)</button>
-                        <button class="tab-button" data-tab="model-b-p1">Model B (e.g., Claude 2)</button>
-                    </div>
-
-                    <div id="model-a-p1" class="tab-content">
-                        <div class="dialogue-block ai-block">
-                            <h5>AI Response: Model A</h5>
+                        <div class="dialogue-block prompt-block">
+                            <h5>Human SMART Prompt</h5>
                             <blockquote>
-                                <p>Hello! I’m your political science tutor, and I’m excited to explore the Federalist
-                                    Papers with you. To get started, can you tell me what you already know about the
-                                    Federalist Papers—who wrote them, why they were written, or any key ideas you’ve
-                                    heard? This will help me tailor our discussion to exactly where you are.</p>
+                                <p>You are a helpful, expert tutor in political science. Your goal is to help a student
+                                    learn about the Federalist Papers. Customize your interaction to the student's
+                                    learning level. Guide the student with questions and break topics into smaller
+                                    chunks.</p>
+                                <p>Follow these steps:</p>
+                                <ol>
+                                    <li>Introduce yourself and ask what the student already knows about the topic.</li>
+                                    <li>Based on their response, ask leading questions to help them connect the
+                                        Federalist Papers to the filibuster debate. Provide analogies and examples.</li>
+                                    <li>Do NOT give the answer away directly. Focus on guiding the student toward their
+                                        own conclusions.</li>
+                                </ol>
+                                <p>Begin now.</p>
                             </blockquote>
                         </div>
-                    </div>
 
-                    <div id="model-b-p1" class="tab-content">
-                        <div class="dialogue-block ai-block">
-                            <h5>AI Response: Model B</h5>
-                            <blockquote>
-                                <p>Hello! I'm here to help you explore the Federalist Papers - a fascinating collection
-                                    of writings that shaped American government. I'm excited to work with you on
-                                    understanding these important documents and how they connect to modern political
-                                    debates.</p>
-                                <p>Before we dive in, I'd like to get a sense of where you're starting from. What do you
-                                    already know about the Federalist Papers? Have you encountered them in class, read
-                                    any excerpts, or maybe just heard the name mentioned? Don't worry if you're starting
-                                    from scratch - that's perfectly fine!</p>
-                                <p>Also, what's your current level - are you in high school, college, or just exploring
-                                    this topic on your own? This will help me tailor our discussion to work best for
-                                    you.</p>
-                            </blockquote>
+                        <div class="comparison-tabs">
+                            <button class="tab-button" data-tab="model-a-p1">Model A (e.g., GPT-3.5)</button>
+                            <button class="tab-button" data-tab="model-b-p1">Model B (e.g., Claude 2)</button>
+                            <button class="tab-button" data-tab="model-c-p1">Model C (e.g., Gemini)</button>
                         </div>
-                    </div>
 
-                    <div class="dialogue-block analysis-block">
-                        <h5>Expert Analysis</h5>
-                        <p>Even when given the exact same detailed prompt, different AI models can exhibit distinct
-                            "personalities" and teaching strategies. Both models successfully adopt the tutor persona,
-                            but they do so with different levels of detail, warmth, and diagnostic questioning. This
-                            comparison reveals the subtle but important architectural differences between models.</p>
+                        <div id="model-a-p1" class="tab-content">
+                            <div class="dialogue-block ai-block">
+                                <h5>AI Response: Model A</h5>
+                                <blockquote>
+                                    <p>Hello! I’m your political science tutor, and I’m excited to explore the
+                                        Federalist Papers with you. To get started, can you tell me what you already
+                                        know about the Federalist Papers—who wrote them, why they were written, or any
+                                        key ideas you’ve heard? This will help me tailor our discussion to exactly where
+                                        you are.</p>
+                                </blockquote>
+                            </div>
+                        </div>
 
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Attribute</th>
-                                    <th>Model A</th>
-                                    <th>Model B</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Tone & Persona</strong></td>
-                                    <td>Direct, efficient, and task-oriented. It quickly establishes its role and moves
-                                        to the first diagnostic question.</td>
-                                    <td>Warm, reassuring, and comprehensive. It adds context ("fascinating collection")
-                                        and explicitly reassures the user (<strong>"Don't worry... that's perfectly
-                                            fine!"</strong>).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Questioning Strategy</strong></td>
-                                    <td>Asks a single, compound question to gauge prior knowledge: <strong>"what you
-                                            already know... who wrote them, why... or any key ideas"</strong>.</td>
-                                    <td>Uses a layered, multi-question approach. It asks a broad opening question,
-                                        provides examples (<strong>"encountered in class, read any excerpts"</strong>),
-                                        and then asks a separate, crucial question about the user's learning level
-                                        (<strong>"high school, college, or just exploring"</strong>).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Adherence to Prompt</strong></td>
-                                    <td>Follows the prompt precisely and economically. It introduces itself and asks
-                                        what the student knows, fulfilling step 1 perfectly.</td>
-                                    <td>Follows the prompt while also enriching it. It fulfills step 1 but adds the
-                                        extra diagnostic layer about the student's level, demonstrating a more proactive
-                                        interpretation of the instruction to "Customize your interaction."</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top: 20px;"><strong>The takeaway:</strong> Model B's approach is arguably more
-                            aligned with expert pedagogy. By asking about the student's level, it gathers more critical
-                            data to "tailor the discussion" effectively. This highlights that even with a SMART prompt,
-                            the model's underlying training on what makes a "good tutor" heavily influences the outcome.
-                        </p>
+                        <div id="model-b-p1" class="tab-content">
+                            <div class="dialogue-block ai-block">
+                                <h5>AI Response: Model B</h5>
+                                <blockquote>
+                                    <p>Hello! I'm here to help you explore the Federalist Papers - a fascinating
+                                        collection of writings that shaped American government. I'm excited to work with
+                                        you on understanding these important documents and how they connect to modern
+                                        political debates.</p>
+                                    <p>Before we dive in, I'd like to get a sense of where you're starting from. What do
+                                        you already know about the Federalist Papers? Have you encountered them in
+                                        class, read any excerpts, or maybe just heard the name mentioned? Don't worry if
+                                        you're starting from scratch - that's perfectly fine!</p>
+                                    <p>Also, what's your current level - are you in high school, college, or just
+                                        exploring this topic on your own? This will help me tailor our discussion to
+                                        work best for you.</p>
+                                </blockquote>
+                            </div>
+                        </div>
+
+                        <div id="model-c-p1" class="tab-content">
+                            <div class="dialogue-block ai-block">
+                                <h5>AI Response: Model C</h5>
+                                <blockquote>
+                                    <p>Hello! I'm a political science tutor, and I'm here to help you explore the
+                                        fascinating world of the Federalist Papers. It's a foundational text for
+                                        understanding the U.S. Constitution and American government.</p>
+                                    <p>To get started, could you tell me a little bit about what you already know about
+                                        the Federalist Papers? No worries if it's not much – we can start from scratch!
+                                    </p>
+                                </blockquote>
+                            </div>
+                        </div>
+
+                        <div class="dialogue-block analysis-block">
+                            <h5>Expert Analysis</h5>
+                            <p>Even when given the exact same detailed prompt, different AI models can
+                                exhibit distinct "personalities" and teaching strategies. All three models successfully
+                                adopt
+                                the tutor persona, but they do so with different levels of detail, warmth, and
+                                diagnostic questioning. This comparison reveals the subtle but important
+                                architectural differences between models.</p>
+
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Attribute</th>
+                                        <th>Model A</th>
+                                        <th>Model B</th>
+                                        <th>Model C</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Tone & Persona</strong></td>
+                                        <td>Direct, efficient, and task-oriented. It quickly establishes
+                                            its role and moves to the first diagnostic question.</td>
+                                        <td>Warm, reassuring, and comprehensive. It adds context
+                                            ("fascinating collection") and explicitly reassures the user
+                                            (<strong>"Don't worry... that's perfectly fine!"</strong>).</td>
+                                        <td>Professional yet approachable. Strikes a middle ground between
+                                            Model A's efficiency and Model B's warmth. Uses educational
+                                            language ("foundational text").</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Questioning Strategy</strong></td>
+                                        <td>Asks a single, compound question to gauge prior knowledge:
+                                            <strong>"what you already know... who wrote them, why... or any key
+                                                ideas"</strong>.
+                                        </td>
+                                        <td>Uses a layered, multi-question approach. It asks a broad
+                                            opening question, provides examples (<strong>"encountered in class, read any
+                                                excerpts"</strong>), and then asks a separate, crucial
+                                            question about the user's learning level (<strong>"high school, college, or
+                                                just exploring"</strong>).</td>
+                                        <td>Simple, direct questioning approach. Asks one clear question
+                                            about prior knowledge while providing reassurance. Similar to
+                                            Model A but with more supportive tone.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Adherence to Prompt</strong></td>
+                                        <td>Follows the prompt more precisely. It introduces
+                                            itself and asks what the student knows, fulfilling step 1 perfectly.</td>
+                                        <td>Follows the prompt while also enriching it. It fulfills step
+                                            1 but adds the extra diagnostic layer about the student's level,
+                                            demonstrating a more proactive interpretation of the instruction to
+                                            "Customize
+                                            your interaction."</td>
+                                        <td>Follows the prompt accurately with minimal embellishment.
+                                            Introduces itself clearly and asks for prior knowledge as
+                                            instructed, staying close to the basic requirements.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin-top: 20px;"><strong>The takeaway:</strong> Each model brings its own
+                                "teaching personality" to the same prompt. Model A is efficient, Model B is
+                                comprehensive, and Model C is balanced. This highlights that even with a
+                                SMART prompting, the model's own underlying training heavily influences the
+                                outcome. So don't be afraid of experimenting with different prompts and
+                                approaches to find what works best for your specific needs.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
         </section>
 
     </main>
@@ -506,52 +567,32 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
-            // Handles the inner accordions in Part 1
-            function initializeRoundAccordions() {
-                const roundToggles = document.querySelectorAll('#iterative-dialogue .round > h4');
-                roundToggles.forEach(toggle => {
+            // Handles both inner and outer accordions
+            function initializeAccordions() {
+                const toggles = document.querySelectorAll('h2, h4');
+
+                toggles.forEach(toggle => {
                     const content = toggle.nextElementSibling;
-                    const parentSectionContent = toggle.closest('.section-content');
 
                     toggle.addEventListener('click', function (event) {
-                        event.stopPropagation(); // Prevents the main section from closing
+                        event.preventDefault(); // Prevents page jump
+
+                        // If it's an inner accordion, stop the event from bubbling to the outer one
+                        if (toggle.tagName === 'H4') {
+                            event.stopPropagation();
+                        } else { // It's a main section (H2)
+                            // Close all OTHER main sections before opening this one
+                            document.querySelectorAll('main > .case-study-section > h2').forEach(otherToggle => {
+                                if (otherToggle !== this) {
+                                    otherToggle.classList.remove('active');
+                                    otherToggle.nextElementSibling.classList.remove('active');
+                                }
+                            });
+                        }
+
+                        // Toggle the active class on the header and content
                         this.classList.toggle('active');
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        }
-
-                        // After toggling, update the parent section's height
-                        if (parentSectionContent && parentSectionContent.style.maxHeight) {
-                            // Use a timeout to allow the inner animation to start
-                            setTimeout(() => {
-                                parentSectionContent.style.maxHeight = parentSectionContent.scrollHeight + "px";
-                            }, 300); // Match the CSS transition time
-                        }
-                    });
-                });
-            }
-
-            // Handles the main Part 1 and Part 2 accordions
-            function initializeSectionAccordions() {
-                const sectionToggles = document.querySelectorAll('main > .case-study-section > h2');
-                sectionToggles.forEach(toggle => {
-                    const content = toggle.nextElementSibling;
-                    toggle.addEventListener('click', function () {
-                        const isActive = this.classList.contains('active');
-
-                        // Close all main sections
-                        document.querySelectorAll('main > .case-study-section > h2').forEach(t => {
-                            t.classList.remove('active');
-                            t.nextElementSibling.style.maxHeight = null;
-                        });
-
-                        // If the one clicked was not already active, open it
-                        if (!isActive) {
-                            this.classList.add('active');
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        }
+                        content.classList.toggle('active');
                     });
                 });
             }
@@ -586,8 +627,7 @@
                 setActiveTab('model-a-p1');
             }
 
-            initializeSectionAccordions();
-            initializeRoundAccordions();
+            initializeAccordions();
             initializeTabs();
         });
     </script>
